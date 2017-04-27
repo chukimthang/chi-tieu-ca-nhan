@@ -38,14 +38,6 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('user_id', 'Người Tiêu') !!}
-                    {!! Form::select('user_id', $users, null, [
-                        'class' => 'form-control',
-                        'placeholder' => ' -- Mời Bạn Chọn Người Tiêu'
-                    ]) !!}
-                </div>
-
-                <div class="form-group">
                    {!! Form::label('description', 'Mô Tả') !!}
                    {!! Form::textarea('description', null, [
                         'class' => 'form-control',

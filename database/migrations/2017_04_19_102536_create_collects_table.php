@@ -15,7 +15,7 @@ class CreateCollectsTable extends Migration
     {
         Schema::create('collects', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('price', 10, 2)->unsigned()->default(0);
+            $table->float('price', 10, 2)->default(0);
             $table->integer('user_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

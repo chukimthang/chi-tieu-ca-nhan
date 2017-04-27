@@ -9,7 +9,7 @@
                 </button>
 
                 <h3 class="modal-title title" align="center">
-                    Thu thêm quỹ
+                    Thêm thu nhập
                 </h3>
             </div>
             

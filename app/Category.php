@@ -12,6 +12,11 @@ class Category extends Model
 
     protected $fillable = ['name', 'user_id'];
 
+    public function scopeListCategory($query, $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
+
     public function expenses()
     {
         return $this->hasMany(Expense::class);
