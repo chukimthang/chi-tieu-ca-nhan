@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Expense;
 use App\Category;
 use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -26,13 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::orderBy('id', 'desc')->get();
+        $expenses = Expense::listExpense(Auth::user()->id)->get();
         $categories = Category::pluck('name', 'id');
         $category_all = Category::all();
-        $users = User::pluck('name', 'id');
-        $userAdmin = User::getAdmin();
+        $currentUser = Auth::user();
 
         return view('expense.index', compact('expenses', 'categories', 
-            'users', 'category_all', 'userAdmin'));
+            'category_all', 'currentUser'));
     }
 }
