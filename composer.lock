@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f70fff38d8926c50fe5a0be88c80c4f",
+    "content-hash": "5eecc8c96a65ce75f5677b7ebb6c2092",
     "packages": [
         {
             "name": "consoletvs/charts",
@@ -435,17 +435,107 @@
             "time": "2016-03-02T22:35:41+00:00"
         },
         {
-            "name": "laravel/framework",
-            "version": "v5.4.19",
+            "name": "khill/lavacharts",
+            "version": "3.0.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "02444b7450350db17a7607c8a52f7268ebdb0dad"
+                "url": "https://github.com/kevinkhill/lavacharts.git",
+                "reference": "ab4aa8d8bc3d68d0e86b3d59383a0aaee384c6f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/02444b7450350db17a7607c8a52f7268ebdb0dad",
-                "reference": "02444b7450350db17a7607c8a52f7268ebdb0dad",
+                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/ab4aa8d8bc3d68d0e86b3d59383a0aaee384c6f5",
+                "reference": "ab4aa8d8bc3d68d0e86b3d59383a0aaee384c6f5",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "~1.14",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/support": "5.0.*",
+                "mockery/mockery": "~0.9",
+                "mybuilder/phpunit-accelerator": "~1.1",
+                "phpunit/phpunit": "~4.5",
+                "satooshi/php-coveralls": "~1.0",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "suggest": {
+                "khill/datatableplus": "Adds extra features to DataTables such as csv and laravel collection parsing."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Khill\\Lavacharts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Hill",
+                    "email": "kevinkhill@gmail.com",
+                    "role": "Creator"
+                },
+                {
+                    "name": "deringer",
+                    "homepage": "https://github.com/deringer",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "stevebauman",
+                    "homepage": "https://github.com/stevebauman",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "rajivseelam",
+                    "homepage": "https://github.com/rajivseelam",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "tobias-kuendig",
+                    "homepage": "https://github.com/tobias-kuendig",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Stonos",
+                    "homepage": "https://github.com/Stonos",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "MicahKV",
+                    "email": "micah138@yahoo.com",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "SendDerek",
+                    "homepage": "https://github.com/SendDerek",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "PHP wrapper library for the Google Chart API",
+            "homepage": "http://lavacharts.com",
+            "keywords": [
+                "charts",
+                "google",
+                "graphs"
+            ],
+            "time": "2017-03-14T13:36:30+00:00"
+        },
+        {
+            "name": "laravel/framework",
+            "version": "v5.4.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "851aad458bcc904178ded02954d55d36c2c35f8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/851aad458bcc904178ded02954d55d36c2c35f8b",
+                "reference": "851aad458bcc904178ded02954d55d36c2c35f8b",
                 "shasum": ""
             },
             "require": {
@@ -561,7 +651,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-04-16T13:33:34+00:00"
+            "time": "2017-04-27T13:04:35+00:00"
         },
         {
             "name": "laravel/tinker",

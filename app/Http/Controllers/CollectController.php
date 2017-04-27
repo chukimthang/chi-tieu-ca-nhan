@@ -60,8 +60,8 @@ class CollectController extends Controller
         $start = $request->start;
         $finish = $request->finish;
         $collects = Collect::filterDate($start, $finish)->get();
-        $userAdmin = User::getAdmin();
+        $currentUser = Auth::user();
 
-        return view('collect.list', compact('collects', 'userAdmin'));
+        return view('collect.list', compact('collects', 'currentUser'));
     }
 }
