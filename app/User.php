@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Expense;
-use App\Activity;
+use App\Category;
+use App\Collect;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'is_admin',
+        'name', 'email', 'password', 'avatar', 'is_admin', 'total_money'
     ];
 
     /**
@@ -29,23 +30,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function scopeGetAdmin($query)
-    {
-        return $query->where('is_admin', 1)->first();
-    }
-
-    public function scopeGetUser($query, $id)
-    {
-        return $query->where('id', $id)->first();
-    }
-
-    public function activity()
-    {
-        return $this->hasMany(Activity::class);
-    }
-
     public function expenses()
     {
         return $this->hasMany(Expense::class);
+    }
+
+    public function collects()
+    {
+        return $this->hasMany(Collect::class);
+    }
+
+    public function category()
+    {
+        return $this->hasMany(Category::class);
     }
 }

@@ -7,15 +7,12 @@
             <tr>
                 <th width="8%">STT</th>
                 <th class="colum">Tên chi tiêu</th>
-                <th class="colum">Giá (VNĐ)</th>
-                <th class="colum">Chuyên mục</th>
-                <th class="colum">Người tiêu</th>
+                <th class="colum" width="15%">Giá (VNĐ)</th>
+                <th class="colum" width="15%">Chuyên mục</th>
                 <th hidden="true">Mô tả</th>
-                <th class="colum">Thời gian</th>
-                @if(Auth::user()->is_admin == 1)
-                    <th width="8%">Sửa</th>
-                    <th width="8%">Xóa</th>
-                @endif
+                <th class="colum" width="18%">Thời gian</th>
+                <th width="8%">Sửa</th>
+                <th width="8%">Xóa</th>
             </tr>
         </thead>
         <?php 
@@ -35,33 +32,28 @@
                     <td id="category-{!! $expense->id !!}"
                         data-id="{!! $expense->category->id !!}">
                         {!! $expense->category->name !!}</td>
-                    <td id="user-{!! $expense->id !!}"
-                        data-id="{!! $expense->user->id !!}">
-                        {!! $expense->user->name !!}</td>
                     <td id="description-{!! $expense->id !!}" hidden="true">
                         {!! $expense->description !!}
                     </td>
                     <td>{!! $expense->created_at !!}</td>
-                    @if(Auth::user()->is_admin)
-                        <td class="center">
-                            <a href="#" data-toggle="modal"
-                                data-target=".bs-example-modal-lg.edit"
-                                data-id="{!! $expense->id !!}" 
-                                class="update">
-                                <span class="glyphicon glyphicon-edit">
-                                </span>
-                            </a>
-                        </td>
-                        <td class="colum">
-                            <a href="javascript:void(0)" 
-                                data-id="{!! $expense->id !!}" 
-                                class="delete">
-                                <span class="glyphicon
-                                    glyphicon-remove-sign">
-                                </span>
-                            </a>
-                        </td>
-                    @endif
+                    <td class="center">
+                        <a href="#" data-toggle="modal"
+                            data-target=".bs-example-modal-lg.edit"
+                            data-id="{!! $expense->id !!}" 
+                            class="update">
+                            <span class="glyphicon glyphicon-edit">
+                            </span>
+                        </a>
+                    </td>
+                    <td class="colum">
+                        <a href="javascript:void(0)" 
+                            data-id="{!! $expense->id !!}" 
+                            class="delete">
+                            <span class="glyphicon
+                                glyphicon-remove-sign">
+                            </span>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -76,7 +68,7 @@
     <div class="current-money">
         <h3 align="right">Tiền quỹ hiện tại:
             <span class="total-money">
-                {!! number_format($userAdmin->total_money) !!}
+                {!! number_format($currentUser->total_money) !!}
             </span>
             VNĐ
         </h3>

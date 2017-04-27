@@ -11,6 +11,11 @@ class Collect extends Model
 
     protected $fillable = ['price', 'description', 'user_id'];
 
+    public function scopelistCollect($query, $userId)
+    {
+        return $query->where('user_id', $userId)->orderBy('id', 'desc');
+    }
+
     public function scopeFilterDate($query, $start, $finish)
     {
         return $query->whereDate('created_at', '>=', $start)

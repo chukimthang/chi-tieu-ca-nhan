@@ -13,32 +13,27 @@ class CollectController extends Controller
 {
     public function index()
     {
-        $collects = Collect::orderBy('created_at', 'desc')->get();
-        $userAdmin = User::getAdmin();
+        $collects = Collect::listCollect(Auth::user()->id)->get();
+        $currentUser = Auth::user();
 
-        return view('collect.index', compact('collects', 'userAdmin'));
+        return view('collect.index', compact('collects', 'currentUser'));
     }
 
     public function postAddAjax(CollectRequest $request)
     {
         $data = $request->only('price');
+        $data['user_id'] = Auth::user()->id;
         $collect = Collect::create($data);
-        $collects = Collect::orderBy('created_at', 'desc')->get();
+        $collects = Collect::listCollect(Auth::user()->id)->get();
 
-        $user = User::getAdmin();
-        $user->total_money += $collect->price;
-        $user->update([
-            'total_money' => $user->total_money
+        $currentUser = Auth::user();
+        $currentUser->total_money += $collect->price;
+        $currentUser->update([
+            'total_money' => $currentUser->total_money
         ]);
-        $userAdmin = User::getAdmin();
+        $currentUser = Auth::user();
 
-        Activity::create([
-            'user_id' => Auth::user()->id,
-            'action' => 'thêm thu quỹ',
-            'target_id' => $collect->id
-        ]);
-
-        return view('collect.list', compact('collects', 'userAdmin'));
+        return view('collect.list', compact('collects', 'currentUser'));
     }
 
     public function postDeleteAjax(Request $request)
@@ -47,22 +42,16 @@ class CollectController extends Controller
         if ($id) {
             $collect = Collect::find($id);
             $collect->delete();
-            $collects = Collect::orderBy('created_at', 'desc')->get();
+            $collects = Collect::listCollect(Auth::user()->id)->get();
             
-            $user = User::getAdmin();
-            $user->total_money -= $collect->price;
-            $user->update([
-                'total_money' => $user->total_money
+            $currentUser = Auth::user();
+            $currentUser->total_money -= $collect->price;
+            $currentUser->update([
+                'total_money' => $currentUser->total_money
             ]);
-            $userAdmin = User::getAdmin();
+            $currentUser = Auth::user();
 
-            Activity::create([
-                'user_id' => Auth::user()->id,
-                'action' => 'xóa thu quỹ',
-                'target_id' => $collect->id
-            ]);
-
-            return view('collect.list', compact('collects', 'userAdmin'));
+            return view('collect.list', compact('collects', 'currentUser'));
         }
     }
 

@@ -16,7 +16,8 @@ function user() {
         alert('Bạn chưa chọn ảnh');
       }
     });
-    this.updateProfile();
+    current.updateProfile();
+    current.delete();
   };
 
   this.uploadFile = function (file) {
@@ -84,6 +85,23 @@ function user() {
           }
           $('.form-error-profile').show().html(errors);
         }
+      })
+    });
+  }
+
+  this.delete = function() {
+    $('#user-all').on('click', '.delete', function() {
+      var dataId = $(this).data('id');
+      $.ajax({
+        url: '/admin/user/deleteAjax',
+        type: 'POST',
+        data: {
+          id: dataId
+        }
+      })
+      .done(function(data) {
+        swal("Đã xóa!", "Xóa thành công", "success");
+        $('#user-all').html(data);
       })
     });
   }

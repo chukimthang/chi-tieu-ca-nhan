@@ -14,8 +14,7 @@ Route::get('/', ['as' => 'login', 'uses' => 'HomeController@index']);
 
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::group(['prefix' => 'category', 'as' => 'category.', 
-        'middleware' => 'admin'], function() {
+    Route::group(['prefix' => 'category', 'as' => 'category.'], function() {
         Route::get('/', [
             'as' => 'index',
             'uses' => 'CategoryController@index'
@@ -91,8 +90,6 @@ Route::group(['middleware' => 'auth'], function() {
         ]);
     });
 
-    Route::resource('activity', 'ActivityController', ['only' => 'index']);
-
     Route::resource('chart', 'ChartController', ['only' => 'index']);
 
     Route::group(['prefix' => 'user', 'as' => 'user.'], function() {
@@ -115,6 +112,22 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('updateProfile', [
             'as' => 'updateProfile',
             'uses' => 'UserController@postUpdateProfile'
+        ]);
+    });
+});
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin',
+    'middleware' => 'admin'], function() {
+
+    Route::group(['prefix' => 'user', 'as' => 'user.'], function() {
+        Route::get('/', [
+            'as' => 'index',
+            'uses' => 'UserController@index'
+        ]);
+
+        Route::post('deleteAjax', [
+            'as' => 'deleteAjax',
+            'uses' => 'UserController@postDeleteAjax'
         ]);
     });
 });

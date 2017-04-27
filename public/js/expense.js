@@ -37,9 +37,13 @@ function expense() {
         processData: false,
       })
       .done(function(data) {
-        swal("Đã thêm!", "Thêm thành công", "success");
-        $('.modal').modal('hide');
-        $('#expense-list').html(data);
+        if (data == 'fails') {
+          alert('Số tiền mua của bạn lớn hơn số tiền hiện có');
+        } else {
+          swal("Đã thêm!", "Thêm thành công", "success");
+          $('.modal').modal('hide');
+          $('#expense-list').html(data);
+        }
       })
       .fail(function(data) {
         var errors = '';
@@ -61,13 +65,11 @@ function expense() {
       var name = $(this).parent().prevAll('#name-' + dataId).html();
       var price = $(this).parent().prevAll('#price-' + dataId).html();
       var category_id = $('#category-' + dataId).data('id');
-      var user_id = $('#user-' + dataId).data('id');
       var description = $('#description-' + dataId).html();
 
       $('#edit-name').val($.trim(name));
       $('#edit-price').val($.trim(parseInt(price)) * 1000);
       $('#edit-category').val(category_id);
-      $('#edit-user').val(user_id);
       $('#edit-description').val($.trim(description));
     });
 
@@ -75,7 +77,6 @@ function expense() {
       var dataName = $('#edit-name').val();
       var dataPrice = $('#edit-price').val();
       var dataCategory = $('#edit-category').val();
-      var dataUser = $('#edit-user').val();
       var dataDescription = $('#edit-description').val();
      
       var formData = new FormData();
@@ -83,7 +84,6 @@ function expense() {
       formData.append('name', dataName);
       formData.append('price', dataPrice);
       formData.append('category_id', dataCategory);
-      formData.append('user_id', dataUser);
       formData.append('description', dataDescription);
 
       $.ajax({
