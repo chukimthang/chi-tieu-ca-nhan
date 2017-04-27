@@ -15,9 +15,6 @@
             <li>
                 <a href="{{ route('collect.index') }}">Thu nhập</a>
             </li>
-            <li>
-                <a href="{{ route('chart.index') }}">Biểu đồ</a>
-            </li>
         </ul>
     </div>
 </div>

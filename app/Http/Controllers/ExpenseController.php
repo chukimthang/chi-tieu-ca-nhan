@@ -14,8 +14,9 @@ class ExpenseController extends Controller
     public function index()
     {
         $expenses = Expense::listExpense(Auth::user()->id)->get();
-        $categories = Category::pluck('name', 'id');
-        $category_all = Category::all();
+        $categories = Category::listCategory(Auth::user()->id)
+            ->pluck('name', 'id');
+        $category_all = Category::listCategory(Auth::user()->id)->get();
         $currentUser = Auth::user();
 
         return view('expense.index', compact('expenses', 'categories', 
@@ -27,14 +28,14 @@ class ExpenseController extends Controller
         $data = $request->only('name', 'price', 'category_id', 
             'user_id', 'description');
         $data['user_id'] = Auth::user()->id;
+        $currentUser = Auth::user();
+        if ($data['price'] > $currentUser->total_money) {
+            return 'fails';
+        }
         $expense = Expense::create($data);
         $expenses = Expense::listExpense(Auth::user()->id)->get();
 
-        $currentUser = Auth::user();
         $currentUser->total_money -= $expense->price;
-        if ($currentUser->total_money < 0) {
-            return 'fails';
-        }
         $currentUser->update([
             'total_money' => $currentUser->total_money
         ]);
