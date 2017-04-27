@@ -21,17 +21,8 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Chử Kim Lợi',
-            'email' => 'loi@gmail.com',
-            'password' => bcrypt('123456'),
-            'avatar' => 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSWXoGSJC7rKeQjngG-7dfU03Aa7vZ9V0kcBPOuiFc0ltTMmUQg',  
-            'is_admin' => 0,
-            'total_money' => 0
-        ]);
-
-        DB::table('users')->insert([
-            'name' => 'Lưu Đức Phú',
-            'email' => 'phu@gmail.com',
+            'name' => 'Trịnh Thị Hoa',
+            'email' => 'trinhhoa21081995@gmail.com',
             'password' => bcrypt('123456'),
             'avatar' => 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSWXoGSJC7rKeQjngG-7dfU03Aa7vZ9V0kcBPOuiFc0ltTMmUQg',  
             'is_admin' => 0,

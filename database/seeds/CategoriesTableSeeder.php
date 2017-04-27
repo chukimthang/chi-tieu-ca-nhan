@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -11,6 +12,8 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+        
         $category = [
             'Thịt cá',
             'Rau, củ, quả',
@@ -23,7 +26,8 @@ class CategoriesTableSeeder extends Seeder
 
         for ($i = 0; $i < count($category); $i++) { 
             DB::table('categories')->insert([
-                'name' => $category[$i]
+                'name' => $category[$i],
+                'user_id' => $faker->numberBetween(1, 2)
             ]);
         }
     }
