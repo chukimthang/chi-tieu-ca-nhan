@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
-use App\Http\Requests\CategoryUpdateRequest;
 use App\Category;
 use Auth;
 
@@ -26,7 +25,7 @@ class CategoryController extends Controller
         return response()->json(['status' => 200]);
     }
 
-    public function postUpdateAjax(CategoryUpdateRequest $request)
+    public function postUpdateAjax(CategoryRequest $request)
     {
         $id = $request->id;
         if ($id) {
